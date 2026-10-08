@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Para ti, meu amor</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;1,500&family=Nunito:wght@400;600&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#fff5f6;--card:#ffffff;--text:#4a2a31;--muted:#8a5c66;--accent:#d6336c;--soft:#ffe3e8;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#1d1317;--card:#2a1b21;--text:#fbe9ee;--muted:#d4a5b2;--accent:#ff6b96;--soft:#3a2229}}
+:root[data-theme="dark"]{--bg:#1d1317;--card:#2a1b21;--text:#fbe9ee;--muted:#d4a5b2;--accent:#ff6b96;--soft:#3a2229}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--text);font-family:'Nunito',system-ui,sans-serif;line-height:1.6;text-align:center}
+main{max-width:560px;margin:0 auto;padding:32px 20px 56px}
+h1,h2{font-family:'Playfair Display',Georgia,serif;margin:0}
+h1{font-size:2.4rem;color:var(--accent);margin-top:24px}
+h2{font-size:1.5rem;margin-bottom:14px}
+.heart{font-size:3.2rem;display:inline-block;animation:beat 1.4s infinite}
+@keyframes beat{0%,100%{transform:scale(1)}50%{transform:scale(1.18)}}
+.card{background:var(--card);border-radius:20px;padding:24px 20px;margin:24px 0;box-shadow:0 6px 24px rgba(214,51,108,.12)}
+p{margin:0 0 12px;color:var(--muted)}
+ul{list-style:none;padding:0;margin:0}
+li{background:var(--soft);border-radius:12px;padding:12px 14px;margin:8px 0;color:var(--text)}
+button{background:var(--accent);color:#fff;border:0;border-radius:999px;padding:14px 28px;font:600 1rem 'Nunito',sans-serif;cursor:pointer}
+button:active{transform:scale(.97)}
+#msg{min-height:3.2em;margin-top:16px;font-family:'Playfair Display',Georgia,serif;font-style:italic;font-size:1.2rem;color:var(--text)}
+.days{font-size:2.2rem;color:var(--accent);font-weight:600}
+input[type=date]{font:inherit;padding:8px 12px;border-radius:10px;border:1px solid var(--soft);background:var(--bg);color:var(--text)}
+footer{color:var(--muted);font-size:.9rem;margin-top:32px}
+
+.slider{position:relative;border-radius:16px;overflow:hidden;background:var(--soft);aspect-ratio:4/5;touch-action:pan-y}
+.slider img{width:100%;height:100%;object-fit:cover;display:block}
+.ph{position:absolute;inset:0;display:none;flex-direction:column;align-items:center;justify-content:center;padding:20px;color:var(--muted);font-size:.95rem}
+.ph span{font-size:3rem}
+.nav{position:absolute;top:50%;transform:translateY(-50%);width:42px;height:42px;padding:0;border-radius:50%;background:rgba(0,0,0,.4);font-size:1.4rem;line-height:1}
+.nav.l{left:8px}.nav.r{right:8px}
+#cap{margin-top:12px;font-family:'Playfair Display',Georgia,serif;font-style:italic;color:var(--text);min-height:1.6em}
+.dots{display:flex;justify-content:center;gap:6px;margin-top:10px;flex-wrap:wrap}
+.dots i{width:8px;height:8px;border-radius:50%;background:var(--soft);display:block}
+.dots i.on{background:var(--accent)}
+</style>
+</head>
+<body>
+<main>
+  <div class="heart">❤️</div>
+  <h1>Feliz Aniversário, meu amor</h1>
+  <p>1 Coríntios 13:4-7.</p>
+
+  <section class="card">
+    <h2>Uma mensagem</h2>
+    <p>Sou abençoado pela saúde e pelas pessoas que tenho a volta, e uma das mais importantes é você
+      É uma honra e com gratidão que posso partilhar e comemorar a tua existência, sortudo por te ter ao meu lado 
+      e que possamos compartilhar mais anos um ao lado do outro. O turco, o Kimbundo, o espanhol, o inglês ou mesmo o português 
+      , ainda não criaram uma forma certa para eu poder exprimir o quanto eu amo-te e o quanto és especial. 
+      Feliz Aniversário meu amor, minha mamacita.
+    </p>
+  </section>
+
+  <section class="card">
+    <h2></h2>
+    <ul>
+      <li>💕 O teu sorriso ilumina os meus dias</li>
+      <li>🌸 Mundele</li>
+      <li>✨ Prosperidade, Saúde e Bençãos</li>
+      <li>🤗 Muitas bençãos</li>
+      <li>🌍 Terra do Nunca</li>
+    </ul>
+  </section>
+
+  <section class="card">
+    <h2>Os nossos momentos</h2>
+    <div class="slider" id="sl">
+      <img id="pic" alt="Foto nossa">
+      <div class="ph" id="ph"><span>📷</span><div id="phtxt"></div></div>
+      <button class="nav l" id="prev" aria-label="Anterior">‹</button>
+      <button class="nav r" id="next" aria-label="Seguinte">›</button>
+    </div>
+    <div id="cap"></div>
+    <div class="dots" id="dots"></div>
+  </section>
+
+  <section class="card">
+    <h2>Marque esse dia?</h2>
+    <p>Escolhe a data em que tudo começou:</p>
+    <input type="date" id="d" aria-label="Data de início">
+    <div class="days" id="out"></div>
+  </section>
+
+  <section class="card">
+    <h2>Toca no coração</h2>
+    <button id="b">Uma mensagem para ti 💌</button>
+    <div id="msg"></div>
+  </section>
+
+  <footer>Feito com amor, só para ti ❤️ by Kinwane Monteiro </footer>
+</main>
+<script>
+var msgs=["Minha Mamacita.","Contigo tudo faz sentido.","Obrigado por existires na minha vida.","Mais tarde estaremos juntos.","Cada dia ao teu lado é um presente."];
+var i=0,m=document.getElementById('msg');
+document.getElementById('b').onclick=function(){m.textContent=msgs[i%msgs.length];i++;};
+var d=document.getElementById('d'),o=document.getElementById('out');
+try{var s=localStorage.getItem('start');if(s)d.value=s;}catch(e){}
+function calc(){
+  if(!d.value){o.textContent='';return;}
+  var n=Math.floor((Date.now()-new Date(d.value+'T00:00:00').getTime())/864e5);
+  o.textContent=n>=0?n+' dias de Aniversário 💖':'';
+  try{localStorage.setItem('start',d.value);}catch(e){}
+}
+d.onchange=calc;calc();
+
+/* ====== FOTOS: edita esta lista ======
+   Coloca as imagens na pasta "fotos" do repositório e escreve aqui o nome de cada uma. */
+var fotos=[
+  {src:"fotos/img3.jpeg",legenda:""},
+  {src:"fotos/img2.jpeg",legenda:""},
+  {src:"fotos/img1.jpeg",legenda:""},
+  {src:"fotos/img4.jpeg",legenda:""},
+  {src:"fotos/img5.jpeg",legenda:""},
+  {src:"fotos/img6.jpeg",legenda:""}
+];
+var k=0,pic=document.getElementById('pic'),ph=document.getElementById('ph'),cap=document.getElementById('cap'),dots=document.getElementById('dots');
+fotos.forEach(function(){dots.appendChild(document.createElement('i'));});
+function show(n){
+  k=(n+fotos.length)%fotos.length;
+  var f=fotos[k];
+  pic.style.display='block';ph.style.display='none';
+  pic.onerror=function(){pic.style.display='none';ph.style.display='flex';document.getElementById('phtxt').textContent='Coloca a foto em '+f.src;};
+  pic.src=f.src;
+  cap.textContent=f.legenda||'';
+  Array.prototype.forEach.call(dots.children,function(d,j){d.className=j===k?'on':'';});
+}
+document.getElementById('prev').onclick=function(){show(k-1);};
+document.getElementById('next').onclick=function(){show(k+1);};
+var x0=null,sl=document.getElementById('sl');
+sl.addEventListener('touchstart',function(e){x0=e.touches[0].clientX;},{passive:true});
+sl.addEventListener('touchend',function(e){if(x0===null)return;var dx=e.changedTouches[0].clientX-x0;if(Math.abs(dx)>40)show(k+(dx<0?1:-1));x0=null;});
+show(0);
+</script>
+</body>
+</html>
